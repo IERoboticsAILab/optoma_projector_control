@@ -40,6 +40,7 @@ def on_unsubscribe(client, userdata, mid):
 def on_message(client, userdata, msg):
     received_message = msg.payload.decode()
     print(f"Received message: {received_message} on topic: {msg.topic}")
+    print(type(received_message))
     target = received_message['target']
     command = received_message['command']
     value = received_message['value']
