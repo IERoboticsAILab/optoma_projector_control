@@ -44,7 +44,7 @@ def on_message(client, userdata, msg):
     print(f"Received message: {received_message} on topic: {msg.topic}")
     target = received_message['target']
     command = received_message['command']
-    value = received_message['value']
+    value = received_message.get('value')
 
     if command in commands_dict_ascii:
         ascii_command = commands_dict_ascii[command]
