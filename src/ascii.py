@@ -40,22 +40,19 @@ def on_unsubscribe(client, userdata, mid):
 def on_message(client, userdata, msg):
     received_message = msg.payload.decode()
     print(f"Received message: {received_message} on topic: {msg.topic}")
-    parts = received_message.split()
-    if len(parts) == 2 and parts[1].isdigit():
-        string_command = parts[0]
-        n = parts[1]
-    else:
-        string_command = parts[0]
-        n = None
+    target = received_message['target']
+    command = received_message['command']
+    value = received_message['value']
 
-    if string_command in commands_dict_ascii:
-        ascii_command = commands_dict_ascii[string_command]
-        if "n" in ascii_command and n is not None:
-            ascii_command = ascii_command.replace("n", n)
-        ser.write(ascii_command.encode('utf-8'))
-        print(f"Sent {received_message} command: {ascii_command}")
+    if command in commands_dict_ascii:
+        ascii_command = commands_dict_ascii[command]
+        if "n" in ascii_command and value is not None:
+            ascii_command = ascii_command.replace("n", value)
+        if target == 'NORTH':
+            ser.write(ascii_command.encode('utf-8'))
+            print(f"Sent {received_message} command: {ascii_command}")
     else:
-        print(f"No command found for message: {string_command}")
+        print(f"No command found for message: {command}")
 
 def on_connect(client, userdata, flags, rc):
     if rc == 0:
