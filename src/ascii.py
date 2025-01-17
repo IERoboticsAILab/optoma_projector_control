@@ -1,5 +1,6 @@
 import paho.mqtt.client as mqtt
 import serial
+import json
 
 ser = serial.Serial('/dev/ttyUSB0', 9600)  
 
@@ -38,11 +39,9 @@ def on_unsubscribe(client, userdata, mid):
     client.disconnect()
 
 def on_message(client, userdata, msg):
-    print(msg)
-    print(type(msg))
-    received_message = msg.payload.decode()
+    payload = msg.payload.decode('utf-8')
+    received_message = json.loads(payload)
     print(f"Received message: {received_message} on topic: {msg.topic}")
-    print(type(received_message))
     target = received_message['target']
     command = received_message['command']
     value = received_message['value']
