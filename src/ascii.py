@@ -1,8 +1,15 @@
 import paho.mqtt.client as mqtt
 import serial
 import json
+import glob
 
-ser = serial.Serial('/dev/ttyUSB0', 9600)  
+def find_usb_serial_device():
+    usb_devices = glob.glob('/dev/ttyUSB*')
+    if not usb_devices:
+        raise RuntimeError("No USB serial device found")
+    return usb_devices[0]  # Return first available USB device
+
+ser = serial.Serial(find_usb_serial_device(), 9600)  
 
 commands_dict_ascii = {
     # Static commands (no parameters) 
