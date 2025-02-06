@@ -9,6 +9,7 @@ def find_usb_serial_device():
         raise RuntimeError("No USB serial device found")
     return usb_devices[0]  # Return first available USB device
 
+print(find_usb_serial_device())
 ser = serial.Serial(find_usb_serial_device(), 9600)  
 
 commands_dict_ascii = {
