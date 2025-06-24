@@ -1,144 +1,171 @@
-# for projector on/off buttons 
-type: vertical-stack
-cards:
-  - type: button
-    tap_action:
-      action: call-service
-      service: mqtt.publish
-      service_data:
-        topic: home/serial/command
-        payload: 'ON'
-    show_name: true
-    show_icon: true
-    name: Power On
-    icon: mdi:power
-  - type: button
-    tap_action:
-      action: call-service
-      service: mqtt.publish
-      service_data:
-        topic: home/serial/command
-        payload: 'OFF'
-    show_name: true
-    show_icon: true
-    name: Power Off
-    icon: mdi:power-off
-
-
-# Remove controls
-# up, down, left, right, enter, menu
-square: true
-type: grid
-columns: 3
-cards:
-  - show_name: false
-    show_icon: false
-    type: button
-    tap_action:
-      action: toggle
-    show_state: false
-  - show_name: false
-    show_icon: true
-    type: button
-    tap_action:
-      action: call-service
-      service: mqtt.publish
-      service_data:
-        topic: home/serial/command
-        payload: Up
-    name: Up
-    icon: mdi:arrow-up
-  - show_name: false
-    show_icon: false
-    type: button
-    tap_action:
-      action: toggle
-  - show_name: false
-    show_icon: true
-    type: button
-    tap_action:
-      action: call-service
-      service: mqtt.publish
-      service_data:
-        topic: home/serial/command
-        payload: Left
-    name: Left
-    icon: mdi:arrow-left
-  - show_name: false
-    show_icon: true
-    type: button
-    tap_action:
-      action: call-service
-      service: mqtt.publish
-      service_data:
-        topic: home/serial/command
-        payload: Enter
-    name: Enter
-    icon: mdi:location-enter
-  - show_name: false
-    show_icon: true
-    type: button
-    tap_action:
-      action: call-service
-      service: mqtt.publish
-      service_data:
-        topic: home/serial/command
-        payload: Right
-    name: Right
-    icon: mdi:arrow-right
-  - show_name: false
-    show_icon: false
-    type: button
-    tap_action:
-      action: toggle
-    show_state: false
-    name: Right
-    icon: mdi:backburger
-  - show_name: false
-    show_icon: true
-    type: button
-    tap_action:
-      action: call-service
-      service: mqtt.publish
-      service_data:
-        topic: home/serial/command
-        payload: Down
-    name: Down
-    icon: mdi:arrow-down
-    show_state: false
-  - show_name: false
-    show_icon: true
-    type: button
-    tap_action:
-      action: call-service
-      service: mqtt.publish
-      service_data:
-        topic: home/serial/command
-        payload: Menu
-    name: Menu
-    icon: mdi:menu
-
-# Input Selects for input and aspect ratio
-type: entities
-entities:
-  - entity: input_select.projector_input
-  - entity: input_select.projector_aspect_ratio
-
-# keystone and image shift adjustments
-type: vertical-stack
-cards:
-  - type: entities
-    title: Keystone Adjustment
-    entities:
-      - entity: input_number.h_keystone
-        name: Horizontal Keystone
-      - entity: input_number.v_keystone
-        name: Vertical Keystone
-  - type: entities
-    title: Image Shift
-    entities:
-      - entity: input_number.image_shift_h
-        name: Image Shift Horizontal
-      - entity: input_number.image_shift_v
-        name: Image Shift Vertical
-
+icon: mdi:projector
+path: projector
+title: Projector
+cards: []
+badges: []
+type: sections
+sections:
+  - type: grid
+    cards:
+      - features:
+          - type: select-options
+        type: tile
+        entity: input_select.selected_projector
+        show_entity_picture: false
+        vertical: false
+        hide_state: true
+        tap_action:
+          action: none
+        icon_tap_action:
+          action: none
+        hold_action:
+          action: none
+        grid_options:
+          columns: full
+      - type: vertical-stack
+        cards:
+          - show_name: false
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: button.projector_on
+            show_state: false
+            hold_action:
+              action: toggle
+          - show_name: false
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: button.projector_off
+  - type: grid
+    cards:
+      - features:
+          - type: select-options
+        type: tile
+        entity: select.projector_input
+        tap_action:
+          action: none
+        icon_tap_action:
+          action: none
+        hold_action:
+          action: none
+        hide_state: true
+        vertical: false
+        grid_options:
+          columns: full
+      - type: grid
+        cards:
+          - show_name: true
+            show_icon: true
+            type: button
+            grid_options:
+              rows: 2
+              columns: 4
+          - show_name: false
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: button.projector_up
+            grid_options:
+              columns: 4
+              rows: 2
+            show_state: false
+          - show_name: true
+            show_icon: true
+            type: button
+            grid_options:
+              rows: 2
+              columns: 4
+          - show_name: false
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: button.projector_left
+            grid_options:
+              columns: 4
+              rows: 2
+            show_state: false
+            name: " "
+          - show_name: false
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: button.projector_enter
+            grid_options:
+              columns: 4
+              rows: 2
+            show_state: false
+            name: " "
+          - show_name: false
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: button.projector_right
+            grid_options:
+              columns: 4
+              rows: 2
+            show_state: false
+            name: " "
+          - show_name: true
+            show_icon: true
+            type: button
+            grid_options:
+              rows: 2
+              columns: 4
+          - show_name: false
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: button.projector_down
+            grid_options:
+              columns: 4
+              rows: 2
+            show_state: false
+            name: " "
+          - show_name: false
+            show_icon: true
+            type: button
+            tap_action:
+              action: toggle
+            entity: button.projector_menu
+            grid_options:
+              columns: 4
+              rows: 2
+            show_state: false
+            name: " "
+  - type: grid
+    cards:
+      - features:
+          - type: select-options
+        type: tile
+        entity: select.projector_aspect_ratio
+        tap_action:
+          action: none
+        icon_tap_action:
+          action: none
+        hold_action:
+          action: none
+        hide_state: true
+        grid_options:
+          columns: full
+      - type: vertical-stack
+        cards:
+          - type: entities
+            title: Keystone Adjustments
+            entities:
+              - entity: number.projector_h_keystone
+              - entity: number.projector_v_keystone
+            state_color: false
+          - type: entities
+            title: Image Shift Adjustments
+            entities:
+              - entity: number.projector_h_image_shift
+              - entity: number.projector_v_image_shift
+max_columns: 4

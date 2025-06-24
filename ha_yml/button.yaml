@@ -1,0 +1,82 @@
+# Projectors
+## projector controls
+- name: "Projector Up"
+  unique_id: projector_up
+  command_topic: "home/projectors"
+  command_template: >
+    {
+      "target": "{{ states('input_select.selected_projector') }}", 
+      "command": "UP"
+    }
+  icon: "mdi:arrow-up-bold"
+
+- name: "Projector Down"
+  unique_id: projector_down
+  command_topic: "home/projectors"
+  command_template: >
+    {
+      "target": "{{ states('input_select.selected_projector') }}", 
+      "command": "DOWN"
+    }
+  icon: "mdi:arrow-down-bold"
+  
+- name: "Projector Left"
+  unique_id: projector_left
+  command_topic: "home/projectors"
+  command_template: >
+    {
+      "target": "{{ states('input_select.selected_projector') }}", 
+      "command": "LEFT"
+    }
+  icon: "mdi:arrow-left-bold"
+  
+- name: "Projector Right"      
+  unique_id: projector_right
+  command_topic: "home/projectors"
+  command_template: >
+    {
+      "target": "{{ states('input_select.selected_projector') }}",
+      "command": "RIGHT"
+    }
+  icon: "mdi:arrow-right-bold"
+  
+- name: "Projector Enter"
+  unique_id: projector_enter
+  command_topic: "home/projectors"
+  command_template: >
+    {
+      "target": "{{ states('input_select.selected_projector') }}", 
+      "command": "ENTER"
+    }
+  icon: "mdi:checkbox-marked-circle"
+  
+- name: "Projector Menu"
+  unique_id: projector_menu
+  command_topic: "home/projectors"
+  command_template: >
+    {
+      "target": "{{ states('input_select.selected_projector') }}", 
+      "command": "MENU"
+    }
+  icon: "mdi:menu"
+  
+## projector power
+- name: "Projector Power On"
+  unique_id: projector_on
+  command_topic: "home/projectors"
+  command_template: >
+    {
+      "target": "{{ states('input_select.selected_projector') }}",
+      "command": "ON"
+    }
+  icon: "mdi:power"
+  
+- name: "Projector Power Off"
+  unique_id: projector_off
+  command_topic: "home/projectors"
+  command_template: >
+    {
+      "target": "{{ states('input_select.selected_projector') }}", 
+      "command": "OFF"
+    }
+  icon: "mdi:power-off"

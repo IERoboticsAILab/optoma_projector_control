@@ -1,0 +1,24 @@
+- name: "Aspect Ratio"
+  unique_id: projector_aspect_ratio
+  options:
+      - '4:3'
+      - '16:9'
+  #state_topic: "your/state/topic"
+  command_topic: "home/projectors"
+  command_template: >
+    {
+      "target": "{{ states('input_select.selected_projector') }}",
+      "command": "{{ value }}"
+    }
+- name: "Input"
+  unique_id: projector_input
+  options:
+      - 'HDMI1'
+      - 'HDMI2'
+  #state_topic: "your/state/topic"
+  command_topic: "home/projectors"
+  command_template: >
+    {
+      "target": "{{ states('input_select.selected_projector') }}",
+      "command": "{{ value }}"
+    }

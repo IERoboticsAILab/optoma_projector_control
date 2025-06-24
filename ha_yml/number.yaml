@@ -1,0 +1,63 @@
+- name: "Horizontal Keystone"
+  unique_id: projector_h_keystone
+  mode: "slider"
+  min: -40
+  max: 40
+  step: 1
+  #state_topic: "your/state/topic" need to find command that reads 
+  payload_reset: "None"
+  command_topic: "home/projectors"
+  command_template: >
+    {
+      "target": "{{ states('input_select.selected_projector') }}",
+      "command": "H-KEYSTONE",
+      "value": "{{ value }}"
+    }
+    
+- name: "Vertical Keystone"
+  unique_id: projector_v_keystone
+  mode: "slider"
+  min: -40
+  max: 40
+  step: 1
+  #state_topic: "your/state/topic" need to find command that reads 
+  payload_reset: "None"
+  command_topic: "home/projectors"
+  command_template: >
+    {
+      "target": "{{ states('input_select.selected_projector') }}",
+      "command": "V-KEYSTONE",
+      "value": "{{ value }}"
+    }
+    
+- name: "Horizontal Image Shift"
+  unique_id: projector_h_image_shift
+  mode: "slider"
+  min: -250
+  max: 250
+  step: 1
+  #state_topic: "your/state/topic" need to find command that reads 
+  payload_reset: "None" 
+  command_topic: "home/projectors"
+  command_template: >
+    {
+      "target": "{{ states('input_select.selected_projector') }}",
+      "command": "H-IMAGE-SHIFT",
+      "value": "{{ value }}"
+    }
+    
+- name: "Vertical Image Shift"
+  unique_id: projector_v_image_shift
+  mode: "slider"
+  min: -100
+  max: 100
+  step: 1
+  #state_topic: "your/state/topic" need to find command that reads 
+  payload_reset: "None"
+  command_topic: "home/projectors"
+  command_template: >
+    {
+      "target": "{{ states('input_select.selected_projector') }}",
+      "command": "V-IMAGE-SHIFT",
+      "value": "{{ value }}"
+    }
